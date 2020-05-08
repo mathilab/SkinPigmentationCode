@@ -1,0 +1,43 @@
+## Arguments for plotPBSJointDiffTrees.sh
+
+## Directories ##
+d=
+wd=$d/
+scripts=$d/
+
+## Parameters ##
+window=
+filter_snps_th=
+name1=
+name2=GBR
+
+## File locations ##
+vcf=$d/
+trait_snp=$d/
+refgene=$d/
+master=$d/
+anc_time_snps=$d/
+eas_fq=$d/
+afr_fq=$d/
+eur_comb_table=$d/
+
+## Directories ##
+d=directory containing main files
+wd=output directory
+scripts=folders with necessary scripts
+
+## Parameters ##
+# window=SNP window size
+# filter_snps_th=threshold for removing SNPs with too few individuals
+# name1=group 1 name (ancient population)
+# name2=group 2 name (GBR)
+
+## File locations ##
+# vcf=VCF of group 1
+# trait_snp=$d/ukbio/runs2/p_5e-8_1240k_T/clump_true_r2_0.05/snps_master_v37_15ky_ukb_skin_r2_0.05_p_5e-8.tsv
+# refgene=sorted bed file from NCBI refseq
+# master=UK biobank SNP annotation CSV file in master file layout
+# anc_time_snps=$d/ukbio/runs2/p_5e-8_1240k_T/clump_true_r2_0.05/anc-time/v37_40ky_ukb_skin_r2_0.05_p_5e-8.csv
+# eas_fq=CSV file of alternate allele frequencies for CHB
+# afr_fq=CSV file of alternate allele frequencies for YRI
+# eur_comb_table=TSV file for group 2 frequencies combined with YRI and CHB

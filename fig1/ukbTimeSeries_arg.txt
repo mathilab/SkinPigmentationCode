@@ -1,0 +1,56 @@
+## Arguments for ukbTimeSeries.sh
+
+## Home directories ##
+d=
+dir=
+scripts=
+## Flags ##
+restrict_1240k=
+use_anc_calls=
+clump=
+merge=
+## Parameters ##
+r2=
+p=
+## File locations ##
+capture=
+uk=
+gbr_vcf=
+now_vcf=
+anc_vcf=
+anno=
+pc=
+id1kgp=
+loc=
+selscan=
+out=
+refgene=
+
+## Home directories ##
+# d=base directory
+# dir=working directory with required files
+# scripts=directory with required scripts
+
+## Flags ##
+# restrict_1240k=limit to SNPs on 1240k capture array? (true/false)
+# use_anc_calls=run a model using admixture ancestry components? (true/false)
+# clump=perform clumping or LD pruning for SNP selection? (true/false)
+# merge=merge ancient and present-day VCF before PRS calculation step
+
+## Parameters ##
+# r2=threshold for r^2 in LD pruning with Plink
+# p=p-value threshold for downstream analysis
+
+## File locations ##
+# capture=text file of chr and pos separated by tab for 1240K array SNPs
+# uk=unzipped tsv file from Neale Lab
+# gbr_vcf=VCF of GBR from 1000 Genomes
+# now_vcf=VCF of 1000 Genomes
+# anc_vcf=VCF of ancient humans
+# anno=annotation CSV file of ancient samples with dates and assignments
+# pc=principal components coefficients of ancient and modern people
+# id1kgp=1000 Genomes sample info file with populations as CSV
+# 1kgploc=CSV file of coordinates of country locations
+# selscan=file with model coefficients for all alleles in captureShotgun samples
+# out=base file name of output files (no ext.)
+# refgene=sorted bed file of all genes

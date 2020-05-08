@@ -1,0 +1,32 @@
+## Arguments for runLogRegAllSNPs.sh
+
+## Directories ##
+d=
+scripts=
+
+## File locations ##
+vcf=
+anno=
+pca=
+
+## Flags ##
+apulldown=
+
+## Manually execute the following after pipeline finishes:
+#` Combine the output files from scan with combineSelScanOut.sh
+
+## Merge with file containing modern European allele frequencies with
+#` mergeScanFq.R
+
+
+## Directories ##
+# d=directory
+# scripts=directory with required scripts
+
+## File locations ##
+vcf=VCF file of ancient samples
+anno=annotation file for ancient samples
+pca=evec file from smartPCA for ancient samples
+
+## Flags ##
+# apulldown= genotype files generated from apulldown.py? (T/F)
