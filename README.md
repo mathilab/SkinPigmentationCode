@@ -4,12 +4,14 @@
 This repository contains code used to create the main figures for the paper
 "The evolution of skin pigmentation associated variation in West Eurasia" as
 well as key results. Data files that are used in some of the pipelines
-are available at the link in the manuscript under "Code availability." Note
-that some of the pipelines were meant to be run on a computing cluster, hence
-commands for job submissions. These commands may require specific configuration
-for one's own cluster to run properly.
+are available in the following link:
+https://upenn.box.com/s/2yftmtatcl0379rur8k47dqkfmuad47a.
 
-Required software: PLINK, Python 3, R, BCFtools
+Note some of the pipelines were written for our institution's computing cluster,
+hence commands for job submissions. These commands may require specific
+configuration for one's own cluster to run properly.
+
+Required software: PLINK, Python 3, Python 2, R, BCFtools
 
 
 ## dataPrep
@@ -36,11 +38,12 @@ results from fig2 to create subfigures of Fig. 2.
 
 ## fig2
 Pipeline to generate statistics for individual SNP logistic regression. Run
-runLogRegAllSNPs with arguments as shown in runLogRegAllSNPs_args.txt.
+runLogRegAllSNPs with arguments as shown in runLogRegAllSNPs_args.txt. This was
+meant to run on a cluster, but can easily be reconfigured to run locally.
 
-For the actual figure plots, this is generated as part of
+For the actual Fig.2 subplots, those are generated as part of
 the ukbTimeSeries.sh and manualTimeSeries.sh pipelines using the statistics
-generated here in the fig1 folder.
+generated here.
 
 ## fig3
 Pipeline to create subfigures of Fig. 3. Run plotPBSJointDiffTrees.sh with
