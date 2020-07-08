@@ -5,8 +5,10 @@ d=
 dir=
 scripts=
 ## Flags ##
-restrict_1240k=
-use_anc_calls=
+filter=
+use_anc_calls=False
+merge=
+weight=
 ## File locations ##
 master=
 capture=
@@ -14,11 +16,11 @@ now_vcf=
 anc_vcf=
 anno=
 pc=
-id1kgp=
-loc=
+id1kgp=IDref1khg.csv
+loc=1khgcountrycoordinates.csv
 selscan=
 out=
-refgene=
+refgene=ncbi_refseq_sort.bed
 
 ## Home directories ##
 # d=base directory
@@ -26,8 +28,10 @@ refgene=
 # scripts=directory with required scripts
 
 ## Flags ##
-# restrict_1240k=limit to SNPs on 1240k capture array? (true/false)
+# filter=filter VCF by master file SNPs? (true/false)
 # use_anc_calls=run a model using admixture ancestry components? (true/false)
+# merge=merge ancient and present-day VCF before PRS calculation step?
+# weight=perform analysis with weights or effect sizes
 
 ## File locations ##
 # master=SNP annotation file

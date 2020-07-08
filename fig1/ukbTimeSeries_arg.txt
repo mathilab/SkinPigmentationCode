@@ -7,24 +7,25 @@ scripts=
 ## Flags ##
 restrict_1240k=
 use_anc_calls=
-clump=
-merge=
+clump=true
+merge=true
 ## Parameters ##
-r2=
-p=
+r2=0.05
+p=5e-8
+prune_d=100000
 ## File locations ##
-capture=
-uk=
+capture=1240k_chr_colon_pos.tsv
+uk=1717.gwas.imputed_v3.both_sexes.tsv
 gbr_vcf=
 now_vcf=
 anc_vcf=
 anno=
 pc=
-id1kgp=
-loc=
+id1kgp=IDref1khg.csv
+loc=1khgcountrycoordinates.csv
 selscan=
 out=
-refgene=
+refgene=ncbi_refseq_sort.bed
 
 ## Home directories ##
 # d=base directory
@@ -40,6 +41,7 @@ refgene=
 ## Parameters ##
 # r2=threshold for r^2 in LD pruning with Plink
 # p=p-value threshold for downstream analysis
+# prune_d=base pair distance threshold for physical clumping
 
 ## File locations ##
 # capture=text file of chr and pos separated by tab for 1240K array SNPs
