@@ -49,7 +49,8 @@ generated here.
 Pipeline to create subfigures of Fig. 3. Run plotPBSJointDiffTrees.sh with
 arguments as shown in args.txt. 1000 Genomes GBR, YRI, and CHB alternate allele
 frequencies must be calculated beforehand using getAlFqVCF.py and also combined
-with combineFqTables.R with GBR being group 1.
+with combineFqTables.R with GBR being group 1. Similarly, ancient frequency files 
+must be prepared beforehand, which was done using admixFqCombinedTables.R. 
 
 ## fig4
 These scripts are for plotting the panels of Fig. 4. To plot (A) use
