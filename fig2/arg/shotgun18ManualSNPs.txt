@@ -1,0 +1,18 @@
+## Arguments for runLogRegAllSNPs.sh
+#` Run for the 18 hand-curated pigmentation SNPs for shotgun data
+
+## Directories ##
+d=
+scripts=
+
+## File locations ##
+vcf=sg_skin_snps18.vcf.gz
+anno=sg_anno_for_manual_curated_snps.csv
+pca=sg_1kgp.evec
+
+## Flags ##
+apulldown=T
+
+## Note: Pipeline will stop at addHeader.sh
+#` Manually run runLogRegAlt.R
+#` Rscript --vanilla ${scripts}/runLogRegAlt.R alt-matrix/all.csv /${anno} warn/warn.txt ${pca}

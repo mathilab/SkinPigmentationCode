@@ -1,0 +1,17 @@
+## Arguments for runLogRegAllSNPs.sh
+#` Run for v37 Capture-Shotgun dataset over 15k years BP
+
+## Directories ##
+d=
+scripts=
+
+## File locations ##
+vcf=v37.2_1240k_FINAL.vcf.gz
+anno=v37.2_anno_15kybp.csv
+pca=capture_HO.evec
+
+## Flags ##
+apulldown=F
+
+## Execute the following after pipeline finishes:
+#` combineSelScanOut.sh 

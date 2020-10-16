@@ -1,0 +1,14 @@
+## Arguments for runLogRegAllSNPs.sh
+#` Run for Shotgun data for 242 SNPs for Figure 1A
+
+## Directories ##
+d=
+scripts=
+
+## File locations ##
+vcf=fig1a_ty_sg_skin_242.vcf.gz
+anno=sg_anno_for_manual_curated_snps.csv
+pca=sg_1kgp.evec
+
+## Flags ##
+apulldown=T

@@ -11,7 +11,7 @@ Note some of the pipelines were written for our institution's computing cluster,
 hence commands for job submissions. These commands may require specific
 configuration for one's own cluster to run properly.
 
-Required software: PLINK, Python 3, Python 2, R, BCFtools
+Required software: PLINK 1.9, Python 3, Python 2, R, BCFtools
 
 
 ## dataPrep

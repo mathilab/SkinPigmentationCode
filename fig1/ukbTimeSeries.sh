@@ -6,13 +6,6 @@ source $1 # arguments for pipeline in format of ukbTimeSeries_arg.txt
 ## Filter UK Biobank data
 cd $dir
 
-# if $restrict_1240k;
-#   then
-#     # Reformat capture file to chr:pos
-#     cap=${capture%.*}_colon_sep.tsv
-#     awk 'BEGIN{print "snp"}; {printf "%s:%s\n", $1,$2}' $capture > $cap
-# fi
-
 ## Filter UKB summary statistics by SNPs and/or p-value
 wd=p_${p}_1240k_${restrict_1240k}
 mkdir $wd

@@ -1,0 +1,25 @@
+## Arguments for plotPBSJointDiffTrees.sh
+#` Steppe comparison using ADMIXTURE frequencies
+
+## Directories ##
+d=~/skinPigmentationDataFiles/
+wd=
+scripts=~/SkinPigmentationCode/fig3
+
+## Parameters ##
+window=20
+filter_snps_th=20
+name1=SP
+name2=GBR
+use_admixture_fq=true
+
+## File locations ##
+vcf=$d/VCF/yam_1240k.vcf.gz
+trait_snp=$d/snps_master_v37_40ky_ukb_skin_r2_0.05_p_5e-8.tsv
+refgene=$d/ncbi_refseq_sort.bed
+master=$d/Master/ukb_master_v37_40ky_ukb_skin_r2_0.05_p_5e-8.csv
+anc_time_snps=$d/v37_40ky_ukb_skin_r2_0.05_p_5e-8.csv
+eas_fq=$d/chb_fq.csv
+afr_fq=$d/yri_fq.csv
+eur_comb_table=$d/gbr_chb_yri_fq.tsv
+anc_comb_table=$d/yam_admix_fq.tsv

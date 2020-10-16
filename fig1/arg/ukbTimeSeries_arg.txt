@@ -1,17 +1,22 @@
-## Arguments for manualTimeSeries.sh
+## Arguments for ukbTimeSeries.sh
 
 ## Home directories ##
 d=
 dir=
 scripts=
 ## Flags ##
-filter=
-use_anc_calls=False
-merge=
-weight=
+restrict_1240k=
+use_anc_calls=
+clump=true
+merge=true
+## Parameters ##
+r2=0.05
+p=5e-8
+prune_d=100000
 ## File locations ##
-master=
-capture=
+capture=1240k_chr_colon_pos.tsv
+uk=1717.gwas.imputed_v3.both_sexes.tsv
+gbr_vcf=
 now_vcf=
 anc_vcf=
 anno=
@@ -24,18 +29,24 @@ refgene=ncbi_refseq_sort.bed
 
 ## Home directories ##
 # d=base directory
-# dir=working directory with required files
+# dir=working directory with required data files
 # scripts=directory with required scripts
 
 ## Flags ##
-# filter=filter VCF by master file SNPs? (true/false)
+# restrict_1240k=limit to SNPs on 1240k capture array? (true/false)
 # use_anc_calls=run a model using admixture ancestry components? (true/false)
-# merge=merge ancient and present-day VCF before PRS calculation step?
-# weight=perform analysis with weights or effect sizes
+# clump=perform clumping or LD pruning for SNP selection? (true/false)
+# merge=merge ancient and present-day VCF before PRS calculation step
+
+## Parameters ##
+# r2=threshold for r^2 in LD pruning with Plink
+# p=p-value threshold for downstream analysis
+# prune_d=base pair distance threshold for physical clumping
 
 ## File locations ##
-# master=SNP annotation file
-# capture=text file of chr and pos separated by tab
+# capture=text file of chr and pos separated by tab for 1240K array SNPs
+# uk=unzipped tsv file from Neale Lab
+# gbr_vcf=VCF of GBR from 1000 Genomes
 # now_vcf=VCF of 1000 Genomes
 # anc_vcf=VCF of ancient humans
 # anno=annotation CSV file of ancient samples with dates and assignments

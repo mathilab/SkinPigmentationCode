@@ -2,8 +2,8 @@
 
 ## Directories ##
 d=
-wd=$d/
-scripts=$d/
+wd=
+scripts=
 
 ## Parameters ##
 window=
@@ -22,7 +22,7 @@ afr_fq=$d/
 eur_comb_table=$d/
 
 ## Directories ##
-d=directory containing main files
+d=directory containing data files
 wd=output directory
 scripts=folders with necessary scripts
 
@@ -31,6 +31,7 @@ scripts=folders with necessary scripts
 # filter_snps_th=threshold for removing SNPs with too few individuals
 # name1=group 1 name (ancient population)
 # name2=group 2 name (GBR)
+# use_admixture_fq=use ADMIXTURE p matrix frequencies
 
 ## File locations ##
 # vcf=VCF of group 1
@@ -41,3 +42,4 @@ scripts=folders with necessary scripts
 # eas_fq=CSV file of alternate allele frequencies for CHB
 # afr_fq=CSV file of alternate allele frequencies for YRI
 # eur_comb_table=TSV file for group 2 frequencies combined with YRI and CHB
+# anc_comb_table=TSV file for ancient frequencies combined with YRI and CHB

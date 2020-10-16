@@ -1,0 +1,32 @@
+## Arguments for ukbTimeSeries.sh
+#` v37 CaptureShotgun samples over 40k years
+
+## Home directories ##
+d=
+dir=$d/
+scripts=~/SkinPigmentationCode/fig1
+
+## Flags ##
+restrict_1240k=T
+use_anc_calls=false
+clump=true
+merge=true
+
+## Parameters ##
+r2=0.05
+p=5e-8
+prune_d=100000
+
+## File locations ##
+capture=1240k_chr_colon_pos.tsv
+uk=1717.gwas.imputed_v3.both_sexes.tsv
+gbr_vcf=1kgp_gbr.vcf.gz
+now_vcf=1kgp_1240k.vcf.gz
+anc_vcf=v37.2_1240k_FINAL.vcf.gz
+anno=v37.2_anno_FINAL.csv
+pc=capture_1kgp.evec
+id1kgp=IDref1khg.csv
+loc=1khgcountrycoordinates.csv
+selscan=sel_scan_all_capture_40kya.tsv
+out=v37_40ky_ukb_skin_r2_0.05_p_5e-8
+refgene=ncbi_refseq_sort.bed

@@ -1,0 +1,25 @@
+## Arguments for manualTimeSeries.sh
+#` Run for v37 capture-shotgun data 40k years BP
+
+## Home directories ##
+d=~/skinPigmentationDataFiles/
+dir=
+scripts=~/SkinPigmentationCode/fig1
+
+## Flags ##
+use_anc_calls=False
+weight=false
+filter=true
+merge=true
+
+## File locations ##
+master=$d/Master/hand_curated_skin_pigment_18snps.csv
+now_vcf=$d/VCF/1kgp_1240k.vcf.gz
+anc_vcf=$d/VCF/v37.2_1240k_FINAL.vcf.gz
+anno=$d/Annotations/v37.2_anno_FINAL.csv
+pc=$d/PCA/capture_1kgp.evec
+id1kgp=$d/IDref1khg.csv
+loc=$d/1khgcountrycoordinates.csv
+selscan=$d/Sel-scan/sel_scan_all_capture_40kya.tsv
+out=skin_v37_40ky
+refgene=$d/ncbi_refseq_sort.bed

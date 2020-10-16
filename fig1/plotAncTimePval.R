@@ -82,30 +82,6 @@ b + geom_point(aes(size=1.5, colour=sqrt_light_beta)) +
 file=paste(name, ".pdf", sep="")
 ggsave(filename=file, width = 4.5, height = 5)
 
-# r
-
-# time_q <- quantile(selscan$t_r2, .95, na.rm=T)
-# anc_q <- quantile(selscan$anc_r2, .95, na.rm=T)
-# ## Partial r2
-# b <- ggplot(df2, aes(x=t_r2, y=anc_r2)) +
-#   theme_classic(base_size = 20) +
-#   labs(x='Time r2', y='Ancestral group r2') +
-#   theme(text=element_text(family='Helvetica'))
-#
-# b + geom_point(aes(size=1.5, colour=sqrt_light_beta)) +
-#   theme(legend.position='none')  +
-#   geom_label_repel(data=df2[top_snps, ],
-#                    aes(label=NearestGene), size=3,
-#                    force=5, segment.alpha = 0.7, min.segment.length = 0.5,
-#                    arrow=arrow(type='open', length = unit(0.2, "cm")),
-#                    fill=rgb(1,1,1,0.5)) +
-#   geom_vline(aes(xintercept = time_q), linetype='dashed', colour='red') +
-#   geom_hline(aes(yintercept = anc_q), linetype='dashed', colour='red') +
-#   scale_color_gradient2(low='red', mid='grey', high='blue')
-#
-# file=paste(name, ".pdf", sep="")
-# ggsave(filename=file, width = 4.5, height = 5)
-
  # remove rows with NA
 filter_na <- is.na(df2$p_t)
 out.df <- df2[!(filter_na), ]

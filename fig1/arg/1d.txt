@@ -1,0 +1,30 @@
+## Arguments for manualTimeSeries.sh
+#` Run for shotgun updated dataset
+#` Note: To generate Fig 2D, one must manually run plotAncTimePval.R
+#` because the selscan files don't contain genome-wide distribution
+
+## Home directories ##
+d=~/skinPigmentationDataFiles/
+dir=
+scripts=~/SkinPigmentationCode/fig1
+
+## Flags ##
+use_anc_calls=False
+weight=false
+filter=false
+merge=true
+
+## File locations ##
+master=$d/Master/hand_curated_skin_pigment_18snps.csv
+now_vcf=$d/VCF/1kgp_skin_snps18.vcf
+anc_vcf=$d/VCF/sg_skin_all_ty.vcf
+anno=$d/Annotations/sg_anno_for_manual_curated_snps.csv
+pc=$d/PCA/sg_1kgp.evec
+id1kgp=$d/IDref1khg.csv
+loc=$d/1khgcountrycoordinates.csv
+selscan=$d/Sel-scan/shotgun_manually_curated.tsv
+out=sg_40ky
+refgene=$d/ncbi_refseq_sort.bed
+
+## Make Fig 2D
+#` Run "Rscript --vanilla plotAncTimePval.R sel_scan_shotgun.tsv ncbi_refseq_sort.bed anc_time T shotgun_manually_curated.tsv"
