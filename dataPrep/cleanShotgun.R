@@ -1,16 +1,16 @@
 ## Prepare dataset of indivduals prepared by shotgun sequencing 
 
 ######## Paths ########
-archaic <- '/Users/danju/Desktop/pigment/misc/v37_archaic_instance_id.txt'
+archaic <- 'v37_archaic_instance_id.txt'
 # file listing archaic sample Instance ID to exclude
 # folder containing eigenstrat files
-v37anno_path <- '/Users/danju/Desktop/pigment/ancientEuroVCF/v37/v37.2.1240K/v37.2.1240K.clean4.anno.csv'
+v37anno_path <- 'v37.2.1240K.clean4.anno.csv'
 #shotgun_anno <- '/Users/danju/Desktop/pigment/misc/shotgun.anno.csv'
 ## Need to manually change the IDs in original shotgun.anno file to match the 
 #` corresponding individual master.id in v37 annotation dataset. Also, remove
 #` the duplicate samples in the anno file: RISE516 from Allentoft, RISE515 from
 #` Allentoft, Sope (ie MA826) from Saag
-shotgun_anno <- '/Users/danju/Desktop/pigment/misc/shotgun.anno_EDIT.csv'
+shotgun_anno <- 'shotgun.anno_EDIT.csv'
 #######################
 
 v37anno.df <- read.csv(v37anno_path, as.is=T)
@@ -33,18 +33,17 @@ new.sg.samples.df <- sg.missing.df[!(sg.missing.df$Culture %in% c('Neanderthal',
 
 ## Make bamlist for apulldown 1240k sites of new samples 
 bam_list <- new.sg.samples.df[ , 1:2]
-new_bam_save <- '/Users/danju/Desktop/pigment/misc/new_shotgun_bam1240k'
+new_bam_save <- 'new_shotgun_bam1240k'
 write.table(bam_list, new_bam_save, quote=F, row.names=F, col.names=F, sep='\t')
 ## Run apulldown.py on HPC for these non-overlapping samples
 
 ## Create 1240k VCF for overlapping shotgun samples from v37.2
-ind_file_path <- '/Users/danju/Desktop/pigment/ancientEuroVCF/v37/v37.2.1240K/v37.2.1240K.ind'
+ind_file_path <- 'v37.2.1240K.ind'
 v37ind.df <- read.table(ind_file_path, as.is=T)
 v37ind.df$V3[!(v37ind.df$V1 %in% master.sg.df$Instance.ID)] <- 'Ignore'
-ignore_sg_save <- '/Users/danju/Desktop/pigment/ancientEuroVCF/v37/v37.2.1240K/sg_ignore.ind'
+ignore_sg_save <- 'sg_ignore.ind'
 write.table(v37ind.df, ignore_sg_save, quote=F, col.names=F, row.names=F)
 #`Remove non-shotgun samples
-setwd('/Users/danju/Desktop/pigment/ancientEuroVCF/v37/v37.2.1240K')
 #` Make par file 
 sink(file = "work-sg/eig2eig.txt")
 cat("genotypename:  v37.2.1240K.geno\n")
@@ -64,16 +63,13 @@ system("convertf -p work-sg/eig2eig.txt")
 # python /home/danju/packages/gdc/eigenstrat2vcf.py -r sg499 | bgzip > sg499.vcf.gz
 
 ## Merge VCF files
-setwd('/Users/danju/desktop/pigment/ancientEuroVCF/updated-sg')
-
 system('bcftools merge -O z sg499.vcf.gz v37.2_1240k_new_ind.vcf.gz > sg_1240k_FINAL.vcf.gz')
 
 ## Remove sex chromosomes based on 1240k array
-setwd('/Users/danju/Desktop/pigment/ancientEuroVCF/updated-sg')
 system('bcftools view -v snps -O z -R /Users/danju/Desktop/pigment/misc/1240k_no_sex_snps.tsv sg_1240k_FINAL.vcf.gz > sg_1240k_autosome.vcf.gz')
 
 ############ Create anno file for regression analyses ############
-anno_path <- '/Users/danju/Desktop/pigment/misc/shotgun.anno_EDIT.csv'
+anno_path <- 'shotgun.anno_EDIT.csv'
 anno.df <- read.csv(anno_path, as.is=T, na.strings = '..') 
 
 # filter by geography
@@ -82,7 +78,7 @@ anno.final.df <- anno.df[filter, ]
 # remove archaics still in the dataset
 anno.final.df <- anno.final.df[anno.final.df$Culture != 'Neanderthal', ]
 # add Instance.ID from v37 anno downloaded off Reich Lab website
-v37.anno.df <- read.csv('/Users/danju/Desktop/pigment/ancientEuroVCF/v37/v37.2.1240K/v37.2.1240K.clean4.anno.csv', as.is=T)
+v37.anno.df <- read.csv('v37.2.1240K.clean4.anno.csv', as.is=T)
 anno.final.df2 <- merge(anno.final.df, v37.anno.df[ , 1:2], all.x=T, by.x='ID', by.y='Master.ID')
 
 ## Fill in Instance IDs for samples with NA
@@ -102,15 +98,15 @@ rm_family <- c() # no first degree relatives
 # fixed date for Ukraine_N1 since that was wrong in shotgun.anno
 
 # save file for actual regression model
-out_path <- '/Users/danju/Desktop/pigment/metadata/shotgun.anno_REGRESSION.tsv'
+out_path <- 'shotgun.anno_REGRESSION.tsv'
 write.table(anno.final.df3, file=out_path, quote=F, row.names=F, col.names=T, sep='\t')
 
 ## Create anno file for use in just 18 skin SNPs VCF file analysis
 #` This needs to be done because the IDs for the genotype file are based on
 #` Iain's original shotgun anno since all samples are pulled down together
-link_path <- '/Users/danju/Desktop/pigment/misc/iainID_masterID_shotgun.txt'
+link_path <- 'iainID_masterID_shotgun.txt'
 link.df <- read.table(link_path, as.is=T, head=T)
 anno.final.df3$ID[anno.final.df3$ID %in% link.df$Master.ID] <- link.df$iain.ID
 
-save_anno_skin <- '/Users/danju/Desktop/pigment/metadata/sg_anno_for_manual_curated_snps.tsv'
+save_anno_skin <- 'sg_anno_for_manual_curated_snps.tsv'
 write.table(anno.final.df3, file=save_anno_skin, quote=F, row.names=F, col.names=T, sep='\t')

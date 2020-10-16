@@ -3,11 +3,11 @@
 library(ggplot2)
 
 ######## Paths ########
-dir <- '/Users/danju/Desktop/pigment/ancientEuroVCF/v37/v37.2.1240K'
+dir <- ''
 # folder containing eigenstrat files
-archaic <- '/Users/danju/Desktop/pigment/misc/v37_archaic_instance_id.txt'
+archaic <- 'v37_archaic_instance_id.txt'
 # file listing archaic sample Instance ID to exclude
-map_save_path <- '/Users/danju/Desktop/sfig1.pdf'
+map_save_path <- 'sfig1.pdf'
 # export path for map of samples included/excluded
 #######################
 
@@ -214,7 +214,7 @@ length(which(overlap==T))
 # family_anno.df <- merge(family_anno.df, fam.df[ , c(1,5,6)] , by = 'Instance.ID')
 
 ## Create final dataset!
-exclude_family <- '/Users/danju/desktop/pigment/misc/v37_family_exclude_iid.txt'
+exclude_family <- 'v37_family_exclude_iid.txt'
 
 duplicate_list <- scan(file_name_duplicates, what = 'character')
 family_list <- scan(exclude_family, what = 'character')
@@ -223,7 +223,7 @@ exclude_samples <- append(duplicate_list, family_list)
 ## remove duplicates and family members from include.df
 final.df <- include.df[!(include.df$Instance.ID %in% exclude_samples), ]
 
-final_filename <- '/Users/danju/desktop/pigment/ancientEuroVCF/v37/v37.2.1240K/final_ancient_capture_anno.tsv'
+final_filename <- 'final_ancient_capture_anno.tsv'
 write.table(final.df, file=final_filename, row.names=F, quote=F, sep='\t')
 
 ## Filter the eigen files with convertf
@@ -263,7 +263,7 @@ system("convertf -p final/ped2eig.txt")
 ## Merge v37 with new data from: Villalba-MoucoCurrentBiology2019 + OlaldeNature2019
 setwd("final/")
 #` Make par file for first merge
-add1_path <- '/Users/danju/Desktop/pigment/ancientEuroVCF/Villalba-MoucoCurrentBiology2019/'
+add1_path <- 'Villalba-MoucoCurrentBiology2019/'
 sink(file = "wd1/merge1.txt")
 cat("geno1: v37.2_1240k_filtered.geno\n")
 cat("snp1:  v37.2_1240k_filtered.snp\n")
@@ -289,7 +289,7 @@ system("mergeit -p wd1/merge1.txt")
 # missingsnps.df <- merge(missingsnps.df, vm.df, by='V1')
 
 #` Make par file for first merge
-add2_path <- '/Users/danju/Desktop/pigment/ancientEuroVCF/OlaldeNature2019/'
+add2_path <- 'OlaldeNature2019/'
 #` Filter based on coverage, contamination, and kinship
 #` Manually create a list of samples to exclude
 olalde_exlude <- scan(paste(add2_path, 'remove.txt', sep=''), what='character')
@@ -318,7 +318,7 @@ system("mergeit -p final_merge.txt")
 ## Convert EIG to VCF
 ## DO THIS ON PMACS HPC with eigenstrat2vcf.py
 ## Convert EIGENSTRAT to VCF; python 2.7.5
-# python /home/danju/packages/gdc/eigenstrat2vcf.py -r v37.2_1240k_FINAL | bgzip > v37.2_1240k_FINAL.vcf.gz
+# python eigenstrat2vcf.py -r v37.2_1240k_FINAL | bgzip > v37.2_1240k_FINAL.vcf.gz
 
 
 ## Create final annotation files with specific columns and the new datasets
@@ -329,24 +329,24 @@ keep_col <- c(1,2,7,8,9,11,13,14,15,16,17,18,20,21)
 v37anno.df <- v37anno.df[ , keep_col]
 colnames(v37anno.df)[5] <- 'Date'
 colnames(v37anno.df)[12] <- 'Ychrom'
-v37_anno_save <- '/Users/danju/desktop/pigment/metadata/v37.2_anno_clean.tsv'
+v37_anno_save <- 'v37.2_anno_clean.tsv'
 write.table(v37anno.df, file=v37_anno_save, row.names=F, quote=F, sep='\t')
 ## Manually add Villalba-MoucoCurrentBiology2019 + OlaldeNature2019 individuals
-final_ind_path <- '/Users/danju/Desktop/pigment/ancientEuroVCF/v37/v37.2.1240K/final/v37.2_1240k_FINAL.ind'
+final_ind_path <- 'v37.2_1240k_FINAL.ind'
 final_ind.df <- read.table(final_ind_path, as.is=T)
 ## Remove samples from anno that were excluded in genotype files
-edit_anno_path <- '/Users/danju/Desktop/pigment/metadata/v37.2_olalde_vm_anno.csv'
+edit_anno_path <- 'v37.2_olalde_vm_anno.csv'
 edit.anno.df <- read.csv(edit_anno_path, as.is=T)
 edit.anno.df2 <- edit.anno.df[edit.anno.df$Instance.ID %in% final_ind.df$V1, ]
 ## Exclude duplicates from anno
 edit.anno.df2 <- edit.anno.df2[!(duplicated(edit.anno.df2$Instance.ID)), ]
 #` Save this version of annotation and manually add locations to VM and dates to
 #` Olalde samples to finish the final annotation set
-anno_save <- '/Users/danju/Desktop/pigment/metadata/v37.2_anno_clean2.tsv'
+anno_save <- 'v37.2_anno_clean2.tsv'
 write.table(edit.anno.df2, file=anno_save, quote=F, row.names=F, sep='\t')
 ## For VM paper have to estimate longitude and latitude based on paper
 #` Get rough date estimates for Olalde samples
-olalde_date_path <- '/Users/danju/desktop/pigment/misc/olalde_ID_date.csv'
+olalde_date_path <- 'olalde_ID_date.csv'
 olalde.date.df <- read.csv(olalde_date_path, as.is=T, header=F)
 olalde_dates <- rep(NA, length(olalde.date.df$V2))
 for (i in 1:length(olalde.date.df$V2)) {
@@ -361,20 +361,19 @@ olalde.date.df$date <- unlist(olalde_dates)
 #` Fix row 191 'I10866' date manually
 olalde.date.df$date[191] <- (43-51) / 2 + 1950
 #' Save and use vlookup in Excel
-olalde_date_save <- '/Users/danju/Desktop/pigment/misc/olalde_dates.tsv'
+olalde_date_save <- 'olalde_dates.tsv'
 write.table(olalde.date.df[ ,c(1,2,4)], file=olalde_date_save, quote=F, row.names=F, sep='\t')
 #` Manually remove two low coverage samples from VM (BAL003 and CHA004)
 
 ## Create anno file of samples within the past 15k years BP
-anno_path <- '/Users/danju/Desktop/pigment/metadata/v37.2_anno_FINAL.csv'
+anno_path <- 'v37.2_anno_FINAL.csv'
 anno.final.df <- read.csv(anno_path, as.is=T)
 anno.15.df <- anno.final.df[anno.final.df$Date <= 15000, ]
-anno_15_save <- '/Users/danju/Desktop/pigment/metadata/v37.2_anno_15kybp.tsv'
+anno_15_save <- 'v37.2_anno_15kybp.tsv'
 write.table(anno.15.df, file=anno_15_save, quote=F, row.names=F, sep='\t')
 
 ## Subset VCF file to include only individuals in past 15k years BP
-setwd('/Users/danju/Desktop/pigment/ancientEuroVCF/v37/v37.2.1240K/final')
-anno15.df <- read.csv(file='/Users/danju/Desktop/pigment/metadata/v37.2_anno_15kybp.csv', as.is=T)
+anno15.df <- read.csv(file='v37.2_anno_15kybp.csv', as.is=T)
 subset_id <- anno15.df$Instance.ID
 write.table(subset_id, file='instance.id_15kybp.txt', quote=F, row.names=F, col.names=F)
 system("bcftools view -S instance.id_15kybp.txt -O z v37.2_1240k_FINAL.vcf.gz > v37.2_1240k_15kybp.vcf.gz")
@@ -384,7 +383,6 @@ system("plink --vcf v37.2_1240k_15kybp.vcf.gz --make-bed --double-id --keep-alle
 
 ##### Prep Human Origins dataset for PCA #####
 ## Create Human Origins West Eurasian genotype files
-setwd('/Users/danju/Desktop/pigment/ancientEuroVCF/v37/v37.2.1240K')
 #` Filter European individuals
 ho_ind.df <- read.table('v37.2.1240K_HumanOrigins.ind', as.is=T)
 ho_ignore <- ho_ind.df$V1[!(ho_ind.df$V1 %in% ho_samples)]
@@ -407,14 +405,13 @@ sink()
 system("convertf -p eig2eig.txt")
 
 ## Create individual file based on list of West Eurasian samples
-ho_sample_path <- '/Users/danju/Desktop/pigment/misc/HOsamples.txt'
+ho_sample_path <- 'HOsamples.txt'
 ho_samples <- scan(ho_sample_path, what='character')
 ho_sample.df <- ho_ind.df[ho_ind.df$V1 %in% ho_samples, c(1,3)]
-ho_sample_save <- '/Users/danju/Desktop/pigment/misc/HO_sample_pop.tsv'
+ho_sample_save <- 'HO_sample_pop.tsv'
 write.table(ho_sample.df, ho_sample_save, quote=F, row.names=F, col.names=F,
             sep='\t')
 
 ho_pop <- row.names(table(ho_sample.df$V3))
-ho_pop_save <- '/Users/danju/Desktop/pigment/misc/HO_pop.tsv'
+ho_pop_save <- 'HO_pop.tsv'
 write.table(ho_pop, ho_pop_save, quote=F, row.names=F, col.names=F, sep='\t')
-## runPCA_run5.txt lists files used for PCA run
